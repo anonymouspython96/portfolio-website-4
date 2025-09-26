@@ -1,4 +1,4 @@
-const API_KEY = "1454fcc70d7740ba8dd37a1ea83bc11d";
+const API_KEY = "your API";
 const articlesGrid = document.getElementById("articles-grid");
 const loader = document.getElementById("loader");
 const noResults = document.getElementById("no-results");
