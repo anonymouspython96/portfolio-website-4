@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Byte | News Feed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A single-page application with a header, a control bar for category filtering and keyword search, and a responsive grid to display news article cards. This structure is user-friendly, allowing immediate content consumption (top headlines on load) and intuitive exploration via clear filtering and search controls. The dynamic grid adapts to user input, providing a seamless browsing experience. -->
+    <!-- Visualization & Content Choices: Report Info: News articles (title, image, description, source). Goal: Inform & Organize. Viz/Presentation: Responsive grid of HTML cards. Interaction: Users click category buttons or use a search bar to filter the displayed articles. The JS fetches data from the NewsAPI and dynamically re-renders the card grid. Justification: This card-based layout is a standard, effective pattern for browsing content feeds, providing key information at a glance while being highly scannable and visually appealing. Library/Method: Vanilla JS for API fetching (fetch API) and DOM manipulation. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-stone-800">
+
+    <div id="api-key-banner" class="bg-red-500 text-white text-center p-2 fixed top-0 w-full z-50">
+        <strong>Action Required:</strong> Please replace "YOUR_API_KEY" in the JavaScript with your own key from <a href="https://newsapi.org/" target="_blank" class="underline font-bold">newsapi.org</a> for the app to work.
+        <button onclick="document.getElementById('api-key-banner').style.display='none'" class="ml-4 font-bold">X</button>
+    </div>
+
+    <div class="container mx-auto px-4 pt-16">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-stone-900 tracking-tight">The Daily Byte</h1>
+            <p class="text-stone-500 mt-2">Your daily digest of news from around the world.</p>
+        </header>
+
+        <nav class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 sticky top-12 bg-stone-100/80 backdrop-blur-sm py-4 z-40">
+            <div id="category-filters" class="flex flex-wrap justify-center gap-2">
+                <button data-category="general" class="category-btn active px-4 py-2 rounded-full transition-colors duration-300 bg-white shadow-sm hover:bg-stone-200">General</button>
+                <button data-category="technology" class="category-btn px-4 py-2 rounded-full transition-colors duration-300 bg-white shadow-sm hover:bg-stone-200">Technology</button>
+                <button data-category="business" class="category-btn px-4 py-2 rounded-full transition-colors duration-300 bg-white shadow-sm hover:bg-stone-200">Business</button>
+                <button data-category="entertainment" class="category-btn px-4 py-2 rounded-full transition-colors duration-300 bg-white shadow-sm hover:bg-stone-200">Entertainment</button>
+                <button data-category="science" class="category-btn px-4 py-2 rounded-full transition-colors duration-300 bg-white shadow-sm hover:bg-stone-200">Science</button>
+            </div>
+            <div class="relative">
+                <input type="text" id="search-input" placeholder="Search articles..." class="pl-10 pr-4 py-2 rounded-full border border-stone-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-stone-800 w-64">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <svg class="h-5 w-5 text-stone-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+        </nav>
+
+        <main id="main-content">
+            <div id="loader" class="flex justify-center items-center h-64">
+                <div class="loader"></div>
+            </div>
+            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pb-16">
+            </div>
+            <div id="no-results" class="hidden text-center text-stone-500 py-16">
+                <h2 class="text-2xl font-semibold mb-2">No Articles Found</h2>
+                <p>Try adjusting your search or category selection.</p>
+            </div>
+             <div id="error-message" class="hidden text-center text-red-500 py-16">
+                <h2 class="text-2xl font-semibold mb-2">Failed to Fetch Articles</h2>
+                <p>Please check your API key and network connection.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

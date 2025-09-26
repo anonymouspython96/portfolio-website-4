@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f4;
+    /* stone-100 */
+}
+
+.loader {
+    border: 6px solid #e5e7eb;
+    /* gray-200 */
+    border-top: 6px solid #1c1917;
+    /* stone-900 */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.category-btn.active {
+    background-color: #1c1917;
+    /* stone-900 */
+    color: #ffffff;
+    font-weight: 600;
+}
